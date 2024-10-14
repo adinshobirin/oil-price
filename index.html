@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Sertakan axios dari CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <style>
+    .oilpricenettable2 {
+      display: none;
+    }
+  </style>
+  
+<script type="text/javascript" src="https://www.oil-price.net/TABLE3/gen.php?lang=en"> </script>
+<script type="text/javascript" src="https://www.oil-price.net/widgets/brent_text/gen.php?lang=en"> </script>
+<script type="text/javascript" src="https://www.oil-price.net/widgets/natural_gas_text/gen.php?lang=en"> </script>
+<script type="text/javascript" src="https://www.gold-quote.net/TABLE2/gen.php?lang=en"> </script>
+
+
+
+
+<script>
+  // Ambil semua tabel dengan kelas 'oilpricenettable2'
+const tables = document.querySelectorAll('.oilpricenettable2');
+
+// Loop melalui setiap tabel
+tables.forEach((table, index) => {
+    // Ambil semua elemen <tr> dalam tabel tersebut
+    const rows = table.querySelectorAll('tr');
+
+    // Periksa apakah ada <tr> kedua
+    if (rows.length > 1) {
+        // Ambil elemen <tr> kedua
+        const secondRow = rows[2];
+
+        // Ambil semua elemen <td> dari <tr> kedua
+        const tds = secondRow.querySelectorAll('td');
+
+        // Buat elemen <div> untuk menampung hasil
+        const outputDiv = document.createElement('div');
+        outputDiv.classList.add(`output-table-${index}`); // Tambahkan kelas unik untuk identifikasi
+
+        // Loop melalui setiap <td> dan masukkan kontennya ke dalam <p>
+        tds.forEach(td => {
+            const paragraph = document.createElement('td');
+            paragraph.textContent = td.textContent.trim();
+            outputDiv.appendChild(paragraph);
+        });
+
+        // Tambahkan elemen baru ini ke body atau elemen lain di halaman
+        document.body.appendChild(outputDiv);
+    }
+});
+
+
+
+</script>
+</body>
+</html>
