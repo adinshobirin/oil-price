@@ -3,14 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <!-- Sertakan axios dari CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Oil Price frame</title>
+  
 </head>
 <body>
   <style>
     .oilpricenettable2 {
       display: none;
+    }
+    td a {
+      pointer-events: none;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    table {
+      border: 1px solid !important;
+    }
+    td {
+      border: 1px solid;
+    }
+
+    .up {
+      color: #008000;
+    }
+    .down {
+      color: #ff0000;
     }
   </style>
   
@@ -18,45 +36,54 @@
 <script type="text/javascript" src="https://www.oil-price.net/widgets/brent_text/gen.php?lang=en"> </script>
 <script type="text/javascript" src="https://www.oil-price.net/widgets/natural_gas_text/gen.php?lang=en"> </script>
 <script type="text/javascript" src="https://www.gold-quote.net/TABLE2/gen.php?lang=en"> </script>
+<noscript> To get the <a href="http://www.gold-quote.net">gold price</a>, please enable Javascript.</noscript>	
 
 
-
-
+<table summary="Gold oil price (c) http://oil-price.net" cellspacing="5" cellpadding="5" border="0"
+  style="font-family: Lucida Sans Unicode, Lucida Grande, Sans-Serif; font-size: 12px ; margin: 5px;  border-collapse: collapse; text-align: left; border-color: #FFFFFF; border-width: 0px 0px 0px 0px;">
+  <tbody>
+    <tr valign="bottom" id="targetRow">
+      <!-- code -->
+       <td><a href="#">Gold Price</a></td>
+    </tr>
+  </tbody>
+</table>
 <script>
-  // Ambil semua tabel dengan kelas 'oilpricenettable2'
-const tables = document.querySelectorAll('.oilpricenettable2');
+  function transferData() {
+    
+    const sourceTable = document.querySelector('.oilpricenettable2');
+    const goldPrice = sourceTable.querySelector('tr:nth-child(2) td:first-child span').textContent.trim(); 
+    const dataTds = sourceTable.querySelectorAll('tr:nth-child(2) td'); 
 
-// Loop melalui setiap tabel
-tables.forEach((table, index) => {
-    // Ambil semua elemen <tr> dalam tabel tersebut
-    const rows = table.querySelectorAll('tr');
+    
+    const targetRow = document.getElementById('targetRow');
 
-    // Periksa apakah ada <tr> kedua
-    if (rows.length > 1) {
-        // Ambil elemen <tr> kedua
-        const secondRow = rows[2];
+    
+    const goldPriceTd = document.createElement('td');
+    goldPriceTd.textContent = goldPrice.replace('$', ''); 
+    targetRow.appendChild(goldPriceTd);
 
-        // Ambil semua elemen <td> dari <tr> kedua
-        const tds = secondRow.querySelectorAll('td');
+    
+    const changeSymbol = dataTds[1].textContent.trim().charAt(0); 
+    const percentageContent = dataTds[3].textContent.trim(); 
 
-        // Buat elemen <div> untuk menampung hasil
-        const outputDiv = document.createElement('div');
-        outputDiv.classList.add(`output-table-${index}`); // Tambahkan kelas unik untuk identifikasi
-
-        // Loop melalui setiap <td> dan masukkan kontennya ke dalam <p>
-        tds.forEach(td => {
-            const paragraph = document.createElement('td');
-            paragraph.textContent = td.textContent.trim();
-            outputDiv.appendChild(paragraph);
-        });
-
-        // Tambahkan elemen baru ini ke body atau elemen lain di halaman
-        document.body.appendChild(outputDiv);
+    const newTd = document.createElement('td');
+    
+    if (changeSymbol === '▲') {
+      newTd.textContent = `+${percentageContent}`; 
+      newTd.classList.add('up'); 
+    } else if (changeSymbol === '▼') {
+      newTd.textContent = `-${percentageContent}`; 
+      newTd.classList.add('down'); 
+    } else {
+      newTd.textContent = percentageContent; 
     }
-});
+    
+    targetRow.appendChild(newTd); 
+  }
 
 
-
+  window.onload = transferData;
 </script>
 </body>
 </html>
