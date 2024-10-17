@@ -20,7 +20,7 @@ table {
   border: 1px solid !important;
   margin: 0px 0px -1px 0px !important;
   border-collapse: collapse;
-  width: 436px;
+  width: 380px;
  
 }
 td, th {
@@ -47,7 +47,7 @@ td, th {
     background-color: #f4f9fe;
 }
 
-table tr:hover {background-color: #ddd;}
+table tr:hover {background-color: #ddd !important; }
 
 table th {
   padding-top: 12px;
