@@ -31,12 +31,12 @@ window.onload = transferData;
 // make fill color on tr
 const tabless = document.querySelectorAll('table');
 if (tabless.length >= 4) {
-  const secondTableRows = tabless[1].querySelectorAll('tr'); // Tabel kedua
-  const fourthTableRows = tabless[3].querySelectorAll('tr'); // Tabel keempat
+  const secondTableRows = tabless[1].querySelectorAll('tr'); 
+  const fourthTableRows = tabless[3].querySelectorAll('tr');
   secondTableRows.forEach(row => {
-      row.style.backgroundColor = '#f4f9fe'; // Ganti warna sesuai keinginan
+      row.style.backgroundColor = '#f4f9fe'; 
   });
   fourthTableRows.forEach(row => {
-      row.style.backgroundColor = '#e0f7fa'; // Ganti warna sesuai keinginan
+      row.style.backgroundColor = '#f4f9fe'; 
   });
 }
