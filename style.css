@@ -1,24 +1,30 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+body#iframe {
   margin: 0px;
 }
 .oilpricenettable2 {
   display: none;
 }
-td a {
+td a, th {
   pointer-events: none;
   font-weight: 600;
   text-decoration: none;
 }
 
+td a {
+  color: #44546f !important;
+}
+
 table {
   border: 1px solid !important;
   margin: 0px 0px -1px 0px !important;
-  font-size: 12px;
   border-collapse: collapse;
-  width: 380px;
+ 
 }
-td {
+td, th {
   border: 1px solid;
+  font-family: "Lato", sans-serif;
 }
 
 .up {
@@ -27,29 +33,36 @@ td {
 .down {
   color: #ff0000;
 }
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-collapse: collapse;
+    width: 30%;
+}
 
-td {
-    border: 1px solid #000;
+td, th {
+    border: 1px solid #000; 
     padding: 10px;
-    text-align: center;
+    text-align: left;
     width: 33%; 
     white-space: nowrap;
 }
 
-.header {
-    background-color: #cecfce;
-    font-size: 18px;
-    font-weight: bold;
-    color: #000;
+.price-table-container table:nth-of-type(2n) tbody tr {
+    background-color: #f4f9fe;
 }
 
-.price {
-    font-size: 22px;
-    font-weight: bold;
-    color: #000;
+table tr:hover {background-color: #ddd;}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #3587BF;
+  color: white;
 }
 
-.change {
-    font-size: 16px;
-    font-weight: bold;
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 8px;
 }
